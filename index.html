@@ -43,8 +43,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#ffe4ec;}
 
 /* === TOPBAR === */
 .topbar{display:flex;align-items:center;gap:12px;z-index:5;}
-.topbar .title{font-size:36px;font-weight:900;color:#1a4a6e;
-  background:#fff;padding:12px 30px;border-radius:999px;
+.topbar .title{font-size:30px;font-weight:900;color:#1a4a6e;
+  background:#fff;padding:10px 22px;border-radius:999px;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   border:4px solid #5fb6f0;box-shadow:0 6px 16px rgba(95,182,240,.4),inset 0 -2px 0 rgba(0,0,0,.06);}
 .topbar .prog{flex:1;display:flex;gap:8px;justify-content:center;}
 .dot{width:18px;height:18px;border-radius:50%;background:rgba(26,74,110,.18);transition:.25s;}
@@ -507,6 +507,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#ffe4ec;}
 .dbRow{display:flex;justify-content:space-between;font-size:22px;font-weight:800;color:#1a4a6e;padding:8px 14px;border-bottom:2px solid #e0e7ef;}
 .dbRow:last-child{border:none;}
 
+/* 빈 박스 숨김 — 화면 진입 직후 빈 상태 가림 */
+.instrTxt:empty,.picCard:empty,.evalCard:has(>.evalQ:empty){visibility:hidden;}
 </style>
 </head>
 <body>
@@ -562,7 +564,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#ffe4ec;}
 
   <!-- ============ TUTORIAL — +2 시연 ============ -->
   <section class="screen" id="scrTut">
-    <div class="topbar"><button class="homeBtn" onclick="goHome()" title="처음으로">🏠</button><button class="backBtn" id="backBtnTut" onclick="goBack()" title="직전 화면">⬅️</button><div class="title">🔧 한 번 더 더하기</div>
+    <div class="topbar"><button class="homeBtn" onclick="goHome()" title="처음으로">🏠</button><button class="backBtn" id="backBtnTut" onclick="goBack()" title="직전 화면">⬅️</button><div class="title">🔧 패턴 보기</div>
       <div class="prog" id="pgTut"></div><button class="spk" id="spkTut">🔇</button></div>
     <div class="vbody">
       <div class="instrTxt">빈칸에 들어갈 수를 순서대로 입력해 보세요</div>
@@ -724,31 +726,31 @@ html,body{width:100%;height:100%;overflow:hidden;background:#ffe4ec;}
       <div class="fastPickWrap">
         <div class="fastPickIcon">⚡</div>
         <div class="fastPickTitle">도전 단계를 골라요!</div>
-        <div class="fastPickSub">10문제를 정해진 시간 안에! 어떤 칭호에 도전할까요?</div>
+        <div class="fastPickSub">5문제를 정해진 시간 안에! 어떤 칭호에 도전할까요?</div>
         <div class="fastPickGrid">
           <div class="fastCard lv1" onclick="startFast(1)">
-            <span class="fcTimeBadge">25초 도전</span>
+            <span class="fcTimeBadge">30초 도전</span>
             <div class="fcTitle">🤖 메가 로봇</div>
             <div class="fcSub">곱셈 마스터</div>
-            <div class="fcDesc">한 문제당 2.5초 · 극한 도전!</div>
+            <div class="fcDesc">⚡ 극한 도전!</div>
           </div>
           <div class="fastCard lv2" onclick="startFast(2)">
-            <span class="fcTimeBadge">45초 도전</span>
+            <span class="fcTimeBadge">1분 도전</span>
             <div class="fcTitle">⚡ 번개 로봇</div>
             <div class="fcSub">아주 빠른 계산</div>
-            <div class="fcDesc">한 문제당 4.5초 · 빠른 도전!</div>
+            <div class="fcDesc">⚡ 빠른 도전!</div>
           </div>
           <div class="fastCard lv3" onclick="startFast(3)">
-            <span class="fcTimeBadge">1분 10초</span>
+            <span class="fcTimeBadge">1분 30초</span>
             <div class="fcTitle">🔧 정밀 엔지니어</div>
             <div class="fcSub">안정된 계산</div>
-            <div class="fcDesc">한 문제당 7초 · 안정 도전!</div>
+            <div class="fcDesc">🛡️ 안정 도전!</div>
           </div>
           <div class="fastCard lv4" onclick="startFast(4)">
-            <span class="fcTimeBadge">1분 50초</span>
+            <span class="fcTimeBadge">2분 도전</span>
             <div class="fcTitle">🛡️ 차분한 가디언</div>
             <div class="fcSub">꼼꼼한 계산</div>
-            <div class="fcDesc">한 문제당 11초 · 차분히 도전!</div>
+            <div class="fcDesc">🐢 차분히 도전!</div>
           </div>
         </div>
       </div>
@@ -797,22 +799,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:#ffe4ec;}
     <h2>⚡ 도전 단계를 골라요!</h2>
     <div class="sLead">5문제를 정해진 시간 안에! 어떤 칭호에 도전할까요?</div>
     <div class="speedGrid">
-      <button class="speedCard c1" data-tk="god"><span class="sBadge">25초 도전</span>
+      <button class="speedCard c1" data-tk="god"><span class="sBadge">30초 도전</span>
         <div class="sName">🤖 메가 로봇</div>
         <div class="sDesc">곱셈 마스터</div>
-        <div class="sExtra">한 문제 5초 · 극한 도전!</div></button>
-      <button class="speedCard c2" data-tk="lightning"><span class="sBadge">45초 도전</span>
+        <div class="sExtra">30초 안에 ⚡ · 극한 도전!</div></button>
+      <button class="speedCard c2" data-tk="lightning"><span class="sBadge">1분 도전</span>
         <div class="sName">⚡ 번개 로봇</div>
         <div class="sDesc">아주 빠른 계산</div>
-        <div class="sExtra">한 문제 9초 · 빠른 도전!</div></button>
-      <button class="speedCard c3" data-tk="rocket"><span class="sBadge">1분 10초 도전</span>
+        <div class="sExtra">1분 안에 ⚡ · 빠른 도전!</div></button>
+      <button class="speedCard c3" data-tk="rocket"><span class="sBadge">1분 30초 도전</span>
         <div class="sName">🔧 정밀 엔지니어</div>
         <div class="sDesc">안정된 계산</div>
-        <div class="sExtra">한 문제 14초 · 안정 도전!</div></button>
-      <button class="speedCard c4" data-tk="owl"><span class="sBadge">1분 50초 도전</span>
+        <div class="sExtra">1분 30초 안에 🛡️ · 안정 도전!</div></button>
+      <button class="speedCard c4" data-tk="owl"><span class="sBadge">2분 도전 도전</span>
         <div class="sName">🛡️ 차분한 가디언</div>
         <div class="sDesc">꼼꼼한 계산</div>
-        <div class="sExtra">한 문제 22초 · 차분히 도전!</div></button>
+        <div class="sExtra">2분 안에 🐢 · 차분히 도전!</div></button>
       <button class="speedCard cn" data-tk="none"><div class="sName">🐢 천천히 풀기</div>
         <div class="sExtra">시간 제한 없음</div></button>
     </div>
@@ -930,7 +932,7 @@ function _trackShow(id){
   if(_scrHist.length>20)_scrHist.shift();
   updateStageBar(id);
   // 키패드/풍선 화면은 마스코트 숨김 (UI 겹침 방지)
-  const hideMascot=['scrDan2Learn','scrDan5Learn','scrChal'].includes(id);
+  const hideMascot=['scrCert','scrChal','scrDan2Learn','scrDan5Learn','scrFast','scrFastPick','scrSummary'].includes(id);
   $('#mascot').style.display=hideMascot?'none':'';
   if(!hideMascot)setMascot(MASCOT_MSGS[id]||'',3500);
 }
@@ -1328,10 +1330,10 @@ function pickSpeedTitle(onPicked){
   });
 }
 const SPEED_TITLES={
-  god:{ico:'🤖',name:'메가 로봇',sub:'곱셈 마스터',desc:'한 문제 5초 · 극한 도전!',total:25,perQ:5,cls:'c1'},
-  lightning:{ico:'⚡',name:'번개 로봇',sub:'아주 빠른 계산',desc:'한 문제 9초 · 빠른 도전!',total:45,perQ:9,cls:'c2'},
-  rocket:{ico:'🔧',name:'정밀 엔지니어',sub:'안정된 계산',desc:'한 문제 14초 · 안정 도전!',total:70,perQ:14,cls:'c3'},
-  owl:{ico:'🛡️',name:'차분한 가디언',sub:'꼼꼼한 계산',desc:'한 문제 22초 · 차분히 도전!',total:110,perQ:22,cls:'c4'},
+  god:{ico:'🤖',name:'메가 로봇',sub:'곱셈 마스터',desc:'30초 안에! ⚡ 극한 도전!',total:30,perQ:6,cls:'c1'},
+  lightning:{ico:'⚡',name:'번개 로봇',sub:'아주 빠른 계산',desc:'1분 안에! ⚡ 빠른 도전!',total:60,perQ:12,cls:'c2'},
+  rocket:{ico:'🔧',name:'정밀 엔지니어',sub:'안정된 계산',desc:'1분 30초 안에! 🛡️ 안정 도전!',total:90,perQ:18,cls:'c3'},
+  owl:{ico:'🛡️',name:'차분한 가디언',sub:'꼼꼼한 계산',desc:'2분 안에! 🐢 차분히 도전!',total:120,perQ:24,cls:'c4'},
   none:{ico:'🐢',name:'천천히',sub:'시간 제한 없음',desc:'천천히 정확하게 풀어봐요',total:0,perQ:0,cls:'cn'}
 };
 
@@ -1345,7 +1347,7 @@ function startSpeedTimer(secs){
     if(_spdLeft<=0){stopSpeedTimer();onSpeedTimeUp();}},1000);
 }
 function stopSpeedTimer(){if(_spdT){clearInterval(_spdT);_spdT=null;}$('#timerBar').classList.add('hidden');$('#timerBar').classList.remove('urgent');$('#stageBar').style.visibility='';}
-function updateSpdUI(){$('#timerInner').style.width=Math.max(0,_spdLeft/_spdMax*100)+'%';$('#timerNum').textContent=Math.max(0,_spdLeft);}
+function updateSpdUI(){$('#timerInner').style.width=Math.max(0,_spdLeft/_spdMax*100)+'%';const s=Math.max(0,_spdLeft);$('#timerNum').textContent=s>=60?Math.floor(s/60)+':'+String(s%60).padStart(2,'0'):s+'';}
 function onSpeedTimeUp(){toast('⏰ 시간 초과!');setTimeout(()=>finishChal(),900);}
 
 function renderChal(){
@@ -1469,10 +1471,10 @@ $('#certAgain').onclick=()=>{show('scrFastPick');};
 
 /* ============= FAST (옛 호환 — 10문제) ============= */
 const FAST_LEVELS = {
-  1:{name:'메가 로봇',icon:'🤖',time:25,emoji:'🤖'},
-  2:{name:'번개 로봇',icon:'⚡',time:45,emoji:'⚡'},
-  3:{name:'정밀 엔지니어',icon:'🔧',time:70,emoji:'🔧'},
-  4:{name:'차분한 가디언',icon:'🛡️',time:110,emoji:'🛡️'}
+  1:{name:'메가 로봇',icon:'🤖',time:30,emoji:'🤖'},
+  2:{name:'번개 로봇',icon:'⚡',time:60,emoji:'⚡'},
+  3:{name:'정밀 엔지니어',icon:'🔧',time:90,emoji:'🔧'},
+  4:{name:'차분한 가디언',icon:'🛡️',time:120,emoji:'🛡️'}
 };
 function startFast(lv){
   const probs=[];const dans=[2,5];
